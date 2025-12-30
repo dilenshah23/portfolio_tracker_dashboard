@@ -1,6 +1,6 @@
 # Portfolio Tracker Dashboard
 
-A modern investment portfolio tracker built with Next.js, demonstrating key concepts relevant to the Pearler tech stack.
+A modern investment portfolio tracker built with Next.js, demonstrating key concepts.
 
 ## Tech Stack
 
