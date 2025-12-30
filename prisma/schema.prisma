@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Holding {
+  id            String   @id @default(cuid())
+  symbol        String   // Stock ticker (e.g., "AAPL")
+  name          String   // Company name
+  quantity      Float    // Number of shares
+  purchasePrice Float    // Price per share at purchase
+  purchaseDate  DateTime // When bought
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([symbol])
+}
+
+model PriceHistory {
+  id        String   @id @default(cuid())
+  symbol    String
+  price     Float
+  date      DateTime
+  createdAt DateTime @default(now())
+
+  @@unique([symbol, date])
+  @@index([symbol, date])
+}
+
+model PortfolioSnapshot {
+  id         String   @id @default(cuid())
+  totalValue Float
+  date       DateTime @unique
+  createdAt  DateTime @default(now())
+}
